@@ -1,6 +1,6 @@
 ---
 title: "Say hello to Gridsome \U0001F389"
-coverImage: /../uploads/card-top.jpg
+coverImage: /images/uploads/card-top.jpg
 excerpt: How cool is this!
 date: 2019-04-05T21:56:12.496Z
 ---
