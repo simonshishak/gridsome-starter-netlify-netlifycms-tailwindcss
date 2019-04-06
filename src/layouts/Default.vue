@@ -1,12 +1,12 @@
 <template>
-  <div class="layout">
-    <header class="header bg-red-400">
+  <div class="font-sans sm:mx-2 sm:p-2 lg:mx-auto container">
+    <header class="header flex align-center justify-between pt-10">
       <strong>
-        <g-link to="/">{{ $static.metaData.siteName }}</g-link>
+        <g-link class="text-xl text-gray-600" to="/">{{ $static.metaData.siteName }}</g-link>
       </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about">About</g-link>
+      <nav class="nav text-lg">
+        <g-link class="mx-2 hover:text-gray-600" to="/">Home</g-link>
+        <g-link class="mx-2 hover:text-gray-600" to="/about">About</g-link>
       </nav>
     </header>
     <slot/>
@@ -20,31 +20,3 @@ query {
   }
 }
 </static-query>
-
-<style>
-body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
-  line-height: 1.5;
-}
-
-.layout {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
-}
-
-.nav__link {
-  margin-left: 20px;
-}
-</style>

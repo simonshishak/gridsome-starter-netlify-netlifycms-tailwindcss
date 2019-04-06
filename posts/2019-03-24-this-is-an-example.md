@@ -74,4 +74,8 @@ Contribute to Gridsome
 
 We're currently just two brothers working on this, so any contribution is very welcome. We're passionate about building a faster web and make website building fun again.
 
+<<<<<<< HEAD
 You can also support us by giving a GitHub star ★ and spread the word :)
+=======
+You can also support us by giving a GitHub star ★ and spread the word :)
+>>>>>>> Start prettying up the layout and move location of image uploads
