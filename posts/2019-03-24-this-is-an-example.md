@@ -1,7 +1,11 @@
 ---
 title: "Say hello to Gridsome \U0001F389"
 coverImage: /images/uploads/card-top.jpg
-excerpt: How cool is this!
+excerpt: >-
+  A new static site generator baby is born. It's highly inspired by Gatsby.js
+  (React based) but built on top of Vue.js. We have been working on it for a
+  year and will have a beta ready soon. You can expect this baby to grow up
+  fast!
 date: 2019-04-05T21:56:12.496Z
 ---
 We think Gridsome is a missing piece to the Vue.js ecosystem. What Gatsby.js does for React.js is a game changer in how we build websites. React.js is excellent, but we think Vue.js is more approachable for most web designers and devs getting started with JAMstack. Gridsome is the Vue.js alternative to Gatsby.
