@@ -11,9 +11,11 @@
         <g-link :to="post.node.path">Read more...</g-link>
       </div>
       <div class="px-6 py-4">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
+        <div class="post-tags">
+          <g-link v-for="tag in post.node.tags" :key="tag.id" :to="tag.path">
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#</span> {{ tag.title }}
+          </g-link>
+        </div>
       </div>
     </div>
   </Layout>
@@ -32,6 +34,7 @@
           title
           path
           excerpt
+          tags
           coverImage (height: 320, quality: 100)
         }
       }
