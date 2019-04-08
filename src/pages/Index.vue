@@ -1,14 +1,14 @@
 <template>
   <Layout>
-    <Pager :info="$page.allPost.pageInfo" />
-    <div v-for="{ node } in $page.allPost.edges" :key="node.id" class="max-w rounded overflow-hidden shadow-lg mt-8">
-      <g-image class="w-full" :src="node.coverImage" alt="Sunset in the mountains"></g-image>
+    <Pager :info="$page.posts.pageInfo" />
+    <div v-for="post in $page.posts.edges" :key="post.id" class="max-w rounded overflow-hidden shadow-lg mt-8">
+      <g-image height="400" src="../../static/images/uploads/card-top.jpg" />
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">{{node.title}}</div>
+        <div class="font-bold text-xl mb-2">{{post.node.title}}</div>
         <p class="text-gray-700 text-base">
-          {{node.excerpt}}
+          {{post.node.excerpt}}
         </p>
-        <g-link :to="node.path">Read more...</g-link>
+        <g-link :to="post.node.path">Read more...</g-link>
       </div>
       <div class="px-6 py-4">
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
@@ -21,7 +21,7 @@
 
 <page-query>
   query Home ($page: Int) {
-    allPost (perPage: 10, page: $page) @paginate {
+    posts: allPost (perPage: 10, page: $page) @paginate {
       pageInfo {
         totalPages
         currentPage
@@ -32,7 +32,7 @@
           title
           path
           excerpt
-          coverImage
+          coverImage (height: 320, quality: 100)
         }
       }
     }
