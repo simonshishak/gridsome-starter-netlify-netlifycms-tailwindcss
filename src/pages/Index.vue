@@ -8,12 +8,17 @@
         <p class="text-gray-700 text-base">
           {{post.node.excerpt}}
         </p>
-        <g-link :to="post.node.path">Read more...</g-link>
+        <div class="mt-2">
+          Posted {{ post.node.date }}
+          <template v-if="post.node.timeToRead">
+            <strong>{{ post.node.timeToRead }} min read.</strong>  
+          </template>  
+        </div>
       </div>
       <div class="px-6 py-4">
         <div class="post-tags">
           <g-link v-for="tag in post.node.tags" :key="tag.id" :to="tag.path">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#</span> {{ tag.title }}
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ tag }}</span>
           </g-link>
         </div>
       </div>
@@ -31,11 +36,13 @@
       edges {
         node {
           _id
+          date (format: "MMM Do YYYY")
           title
           path
           excerpt
           tags
           coverImage (height: 320, quality: 100)
+          timeToRead
         }
       }
     }
