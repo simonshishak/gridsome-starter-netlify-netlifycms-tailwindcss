@@ -10,23 +10,20 @@
           <strong>{{ $page.post.timeToRead }} min read.</strong>  
         </template>  
       </div>
-      <!-- <PostMeta :post="$page.post" /> -->
-
     </div>
-    
-    <div class="post content-box">
-      <div class="post__header">
-        <img alt="Cover image" class="w-full h-48 object-cover" v-if="$page.post.coverImage" :src="$page.post.coverImage" />
-      </div>
-
+    <div class="post__header">
+      <img alt="Cover image" class="w-full rounded rounded-b-none h-48 object-cover" v-if="$page.post.coverImage" :src="$page.post.coverImage" />
+    </div>
+    <div class="px-4 py-4 rounded shadow-lg">
       <div class="mt-8" v-html="$page.post.content" />
-
-      <div class="post__footer">
-        <!-- <PostTags :post="$page.post" /> -->
+    </div>
+    <div class="py-4">
+      <div class="post-tags">
+        <g-link v-for="tag in $page.post.tags" :key="tag.id" :to="tag.path">
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ tag }}</span>
+        </g-link>
       </div>
     </div>
-
-    <!-- <Author class="post-author" /> -->
   </Layout>
 </template>
 
@@ -49,50 +46,4 @@ export default {}
 </script>
 
 <style lang="scss">
-.post-title {
-  padding: calc(var(--space) / 2) 0 calc(var(--space) / 2);
-  text-align: center;
-}
-.post {
-  &__header {
-    width: calc(100% + var(--space) * 2);
-    margin-left: calc(var(--space) * -1);
-    margin-top: calc(var(--space) * -1);
-    margin-bottom: calc(var(--space) / 2);
-    overflow: hidden;
-    border-radius: var(--radius) var(--radius) 0 0;
-    
-    img {
-      width: 100%;
-    }
-    &:empty {
-      display: none;
-    }
-  }
-  &__content {
-    h2:first-child {
-      margin-top: 0;
-    }
-    p:first-of-type {
-      font-size: 1.2em;
-      color: var(--title-color);
-    }
-    img {
-      width: calc(100% + var(--space) * 2);
-      margin-left: calc(var(--space) * -1);
-      display: block;
-      max-width: none;
-    }
-  }
-}
-.post-comments {
-  padding: calc(var(--space) / 2);
-  
-  &:empty {
-    display: none;
-  }
-}
-.post-author {
-  margin-top: calc(var(--space) / 2);
-}
 </style>
