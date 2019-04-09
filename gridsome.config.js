@@ -37,14 +37,6 @@ module.exports = {
       options: {
         path: 'posts/**/*.md',
         typeName: 'Post'
-        // refs: {
-        //   // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
-        //   tags: {
-        //     typeName: 'Tag',
-        //     route: '/tag/:id',
-        //     create: true
-        //   }
-        // }
       }
     },
 		{
@@ -53,15 +45,5 @@ module.exports = {
 				publicPath: '/admin'
 			}
 		}
-  ],
-  chainWebpack: config => {
-    config.module
-      .rule('css') // or sass, scss, less, postcss, stylus
-      .oneOf('normal') // or module
-        .use('postcss-loader')
-          .tap(options => {
-            options.plugins.push(tailwindcss('./tailwind.config.js'))
-            return options
-          })
-  },
+  ]
 }
