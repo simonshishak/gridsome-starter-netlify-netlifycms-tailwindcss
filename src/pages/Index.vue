@@ -1,28 +1,29 @@
 <template>
   <Layout>
     <Pager :info="$page.posts.pageInfo" />
-    <div v-for="post in $page.posts.edges" :key="post.id" :to="post.node.path" class="max-w rounded overflow-hidden shadow-lg mt-8">
-      <img :src="post.node.coverImage" class="w-full h-48 object-cover"/>
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">{{post.node.title}}</div>
-        <p class="text-gray-700 text-base">
-          {{post.node.excerpt}}
-        </p>
-        <div class="mt-2">
-          Posted {{ post.node.date }}
-          <template v-if="post.node.timeToRead">
-            <strong>{{ post.node.timeToRead }} min read.</strong>  
-          </template>  
+    <div class="max-w rounded overflow-hidden shadow-lg mt-8"  v-for="post in $page.posts.edges" :key="post.id">
+      <g-link :to="post.node.path">
+        <img :src="post.node.coverImage" class="w-full h-48 object-cover"/>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{post.node.title}}</div>
+          <p class="text-gray-700 text-base">
+            {{post.node.excerpt}}
+          </p>
+          <div class="mt-2">
+            Posted {{ post.node.date }}
+            <template v-if="post.node.timeToRead">
+              <strong>{{ post.node.timeToRead }} min read.</strong>  
+            </template>  
+          </div>
         </div>
-      </div>
-      <div class="px-6 py-4">
-        <div class="post-tags">
-          <g-link v-for="tag in post.node.tags" :key="tag.id" :to="tag.path">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ tag }}</span>
-          </g-link>
+        <div class="px-6 py-4">
+          <div class="post-tags">
+            <g-link v-for="tag in post.node.tags" :key="tag.id" :to="tag.path">
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ tag }}</span>
+            </g-link>
+          </div>
         </div>
-      </div>
-      <g-link class="post__link" :to="post.node.path">Link</g-link>
+      </g-link>
     </div>
   </Layout>
 </template>
