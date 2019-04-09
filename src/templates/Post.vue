@@ -15,7 +15,7 @@
       <img alt="Cover image" class="w-full rounded rounded-b-none h-48 object-cover" v-if="$page.post.coverImage" :src="$page.post.coverImage" />
     </div>
     <div class="px-4 py-4 rounded shadow-lg">
-      <div class="mt-8" v-html="$page.post.content" />
+      <div class="markdown mt-8" v-html="$page.post.content" />
     </div>
     <div class="py-4">
       <div class="post-tags">
@@ -45,5 +45,41 @@ query Post($path: String!) {
 export default {}
 </script>
 
-<style lang="scss">
+<style lang="postcss">
+.markdown {
+  @apply text-lg text-black leading-normal;
+  & > * + *,  & li + li, & li > p + p {
+    @apply mt-6;
+  }
+  & strong {
+    @apply text-black font-bold;
+  }
+  & a {
+    @apply text-black font-semibold;
+  }
+  & strong a {
+    @apply font-bold;
+  }
+  & h2 {
+    @apply leading-tight text-xl font-bold text-black mb-2 mt-10;
+  }
+  & h3 {
+    @apply leading-tight text-lg font-bold text-black mt-8 -mb-2;
+  }
+  & code {
+    @apply font-mono text-sm inline bg-gray-100 px-1;
+  }
+  & pre code {
+    @apply block bg-black p-4 rounded;
+  }
+  & blockquote {
+    @apply border-l-4 border-gray-100 pl-4 italic;
+  }
+  & ul, & ol {
+    @apply pl-5;
+    @screen sm {
+      @apply pl-10;
+    }
+  }
+}
 </style>

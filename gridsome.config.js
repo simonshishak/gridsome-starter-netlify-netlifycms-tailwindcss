@@ -1,20 +1,27 @@
-// This is where project configuration and plugin options are located. 
-// Learn more: https://gridsome.org/docs/config
-
-// Changes here requires a server restart.
-// To restart press CTRL + C in terminal and run `gridsome develop`
+const tailwindcss = require('tailwindcss')
 
 module.exports = {
   siteName: 'Gridsome with Netlify + NetlifyCMS + TailwindCSS',
   siteDescription: 'Gridsome Starter Kit using Netlify for Deployments, NetlifyCMS for Content Management and TailwindCSS for Styling',
   titleTemplate: 'Gridsome with Netlify + NetlifyCMS + TailwindCSS',
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          tailwindcss,
+          require('postcss-nesting')(),
+          require('autoprefixer')()
+        ]
+      }
+    }
+  },
   transformers: {
     remark: {
       externalLinksTarget: '_blank',
       externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
       anchorClassName: 'icon icon-link',
       plugins: [
-        // ...global plugins
+        ['gridsome-plugin-remark-shiki', { skipInline: true }]
       ]
     }
   },
@@ -30,6 +37,14 @@ module.exports = {
       options: {
         path: 'posts/**/*.md',
         typeName: 'Post'
+        // refs: {
+        //   // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
+        //   tags: {
+        //     typeName: 'Tag',
+        //     route: '/tag/:id',
+        //     create: true
+        //   }
+        // }
       }
     },
 		{
@@ -38,5 +53,15 @@ module.exports = {
 				publicPath: '/admin'
 			}
 		}
-  ]
+  ],
+  chainWebpack: config => {
+    config.module
+      .rule('css') // or sass, scss, less, postcss, stylus
+      .oneOf('normal') // or module
+        .use('postcss-loader')
+          .tap(options => {
+            options.plugins.push(tailwindcss('./tailwind.config.js'))
+            return options
+          })
+  },
 }
